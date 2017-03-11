@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+    code:
+        image: busybox
+        command: /bin/true
+        container_name: fallout_cli_code
+        volumes:
+            - ./code_link:/var/www
+    db:
+        build: ./db
+        container_name: fallout_cli_db
+        volumes:
+            - ./data/mysql:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+    nginx:
+        build: ./nginx
+        container_name: fallout_cli_nginx
+        ports:
+            - 80:80
+        links:
+            - php-fpm
+        volumes_from:
+            - code
+        volumes:
+            - ./logs/nginx:/var/log/nginx
+    php-fpm:
+        build: ./php-fpm
+        container_name: fallout_cli_php-fpm
+        volumes_from:
+            - code
+        volumes:
+            - ~/.composer:/root/.composer
+            - ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro
+            - ./logs/fallout_cli:/var/log/fallout_cli
+        links:
+            - db
