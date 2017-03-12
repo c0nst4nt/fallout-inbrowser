@@ -13,6 +13,12 @@ class DefaultController extends Controller
             'agility_value' => 50,
             'perceive_value' => 50,
             'luck_value' => 50,
+            'life_value' => 90,
+            'moves_value' => 40,
+            'current_attack' => 1,
+            'max_steps' => 3,
+            'accuracy' => 10,
+            'critical_chance' => 5,
         ]);
     }
 }

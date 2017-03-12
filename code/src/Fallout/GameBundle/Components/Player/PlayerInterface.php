@@ -1,24 +1,28 @@
 <?php
 namespace Fallout\GameBundle\Components\Player;
 
+use Fallout\GameBundle\Components\Item\ArmorItem;
+use Fallout\GameBundle\Components\Item\WeaponItem;
+
 interface PlayerInterface
 {
-    const PLAYER_BEGIN_LEVEL = 1;
-    const PLAYER_MAX_LEVEL = 5;
-
     /**
      * @return string
      */
-    public function getPlayerName();
+    public function getName();
 
     /**
      * @return int
      */
-    public function getCurrentLevel();
+    public function getHealth();
 
     /**
-     * @param int $level
-     * @return $this
+     * @return WeaponItem
      */
-    public function setCurrentLevel($level);
+    public function getWeapon();
+
+    /**
+     * @return ArmorItem
+     */
+    public function getArmor();
 }

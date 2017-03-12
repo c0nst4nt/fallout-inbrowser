@@ -1,5 +1,5 @@
 <?php
-namespace Fallout\GameBundle\Components\Player\Special;
+namespace Fallout\GameBundle\Components\Player\Main\Special;
 
 class LuckSpecialParameter implements SpecialParameterInterface
 {

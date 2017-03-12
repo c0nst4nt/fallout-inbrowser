@@ -1,7 +1,7 @@
 <?php
-namespace Fallout\GameBundle\Components\Player\Special;
+namespace Fallout\GameBundle\Components\Player\Main\Special;
 
-use Fallout\GameBundle\Components\Player\Player;
+use Fallout\GameBundle\Components\Player\Main\MainPlayer;
 
 class StrengthSpecialParameter implements SpecialParameterInterface
 {
@@ -67,7 +67,7 @@ class StrengthSpecialParameter implements SpecialParameterInterface
     private function validateValues($playerLevel, $parameterValue)
     {
         // TODO :: rewrite this to symfony validation
-        if ($playerLevel < Player::PLAYER_BEGIN_LEVEL || $playerLevel > Player::PLAYER_MAX_LEVEL) {
+        if ($playerLevel < MainPlayer::PLAYER_BEGIN_LEVEL || $playerLevel > MainPlayer::PLAYER_MAX_LEVEL) {
             throw new \RuntimeException('Player level is wrong');
         } else if ($parameterValue < self::BEGIN_VALUE || $parameterValue > self::MAX_VALUE) {
             throw new \RuntimeException(sprintf('\'%\' special parameter is wrong', $this->getName()));
