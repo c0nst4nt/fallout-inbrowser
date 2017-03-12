@@ -1,59 +1,57 @@
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/bundles/game/styles/main.css') }}">
 {% endblock %}
 {% block body %}
-<div class="main-wrapper">
-    <div class="player-interface">
+<div class="container">
+    <div class="col-md-12">
         <div class="row">
-            <div class="top-menu-block">
-                <div class="level-indicator"></div>
-                <div class="experience-indicator"></div>
-            </div>
+            <h2 class="text-center">Fallout game</h2>
         </div>
-        <div class="row">
-            <div class="left-menu-block">
-                <div class="special-title">
-                    <h2>S.P.A.L (SPECIAL)</h2>
-                </div>
-                <div class="special-indicators">
-                    <div class="strength-indicator"></div>
-                    <div class="agility-indicator"></div>
-                    <div class="perceive-indicator"></div>
-                    <div class="luck-indicator"></div>
+        <div class="col-md-6 player-interface">
+            <div class="row">
+                <div class="top-menu-block">
+                    <div class="level-indicator"></div>
+                    <div class="experience-indicator"></div>
                 </div>
             </div>
-            <div class="avatar"
-                 style="background: url({{ asset('bundles/game/images/characters.png') }}) no-repeat"></div>
-            <div class="right-menu-block">
-                <div class="action-buttons">
-                    <input type="button" name="discover" title="Discover">
-                    <input type="button" name="sleep" title="Sleep">
-                    <input type="button" name="fight" title="Fight">
-                    <input type="button" name="escape" title="Escape">
+            <div class="row">
+                <div class="col-md-4 left-menu-block">
+                    {% include '@Game/special.block.html.twig' %}
+                </div>
+                <div class="col-md-3 col-md-offset-1 avatar"
+                     style="background: url({{ asset('bundles/game/images/characters.png') }}) no-repeat"></div>
+                <div class="col-md-1 col-md-offset-1 right-menu-block">
+                    <div class="action-buttons">
+                        <input type="button" name="discover" value="Discover" class="btn btn-success">
+                        <input type="button" name="sleep" value="Sleep" class="btn btn-primary">
+                        <input type="button" name="fight" value="Fight" class="btn btn-danger">
+                        <input type="button" name="escape" value="Escape" class="btn btn-warning">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="bottom-menu-block">
-                <div class="fight-data">
-                    <div class="attack-value"></div>
-                    <div class="distance-value"></div>
-                    <div class="accuracy-value"></div>
-                    <div class="critical-chance-value"></div>
-                </div>
-                <div class="vitals-block">
-                    <div class="life-indicator"></div>
-                    <div class="moves-indicator"></div>
+            <div class="row">
+                <div class="bottom-menu-block">
+                    <div class="fight-data">
+                        <div class="attack-value"></div>
+                        <div class="distance-value"></div>
+                        <div class="accuracy-value"></div>
+                        <div class="critical-chance-value"></div>
+                    </div>
+                    <div class="vitals-block">
+                        <div class="life-indicator"></div>
+                        <div class="moves-indicator"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="actions-block">
-        <div class="title-block">
-            <h2></h2>
+        <div class="col-md-6 actions-block">
+            <div class="title-block">
+                <h2></h2>
+            </div>
+            <div class="console-block"></div>
         </div>
-        <div class="console-block"></div>
     </div>
 </div>
 {% endblock %}
