@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/bundles/game/styles/main.css') }}">
+{% endblock %}
+{% block body %}
+<div class="main-wrapper">
+    <div class="player-interface">
+        <div class="row">
+            <div class="top-menu-block">
+                <div class="level-indicator"></div>
+                <div class="experience-indicator"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="left-menu-block">
+                <div class="special-title">
+                    <h2>S.P.A.L (SPECIAL)</h2>
+                </div>
+                <div class="special-indicators">
+                    <div class="strength-indicator"></div>
+                    <div class="agility-indicator"></div>
+                    <div class="perceive-indicator"></div>
+                    <div class="luck-indicator"></div>
+                </div>
+            </div>
+            <div class="avatar"
+                 style="background: url({{ asset('bundles/game/images/characters.png') }}) no-repeat"></div>
+            <div class="right-menu-block">
+                <div class="action-buttons">
+                    <input type="button" name="discover" title="Discover">
+                    <input type="button" name="sleep" title="Sleep">
+                    <input type="button" name="fight" title="Fight">
+                    <input type="button" name="escape" title="Escape">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="bottom-menu-block">
+                <div class="fight-data">
+                    <div class="attack-value"></div>
+                    <div class="distance-value"></div>
+                    <div class="accuracy-value"></div>
+                    <div class="critical-chance-value"></div>
+                </div>
+                <div class="vitals-block">
+                    <div class="life-indicator"></div>
+                    <div class="moves-indicator"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions-block">
+        <div class="title-block">
+            <h2></h2>
+        </div>
+        <div class="console-block"></div>
+    </div>
+</div>
+{% endblock %}

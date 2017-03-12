@@ -1,0 +1,19 @@
+.main-wrapper {
+    display: block;
+    width: 100%;
+}
+
+.player-interface {
+    float: left;
+    width: 50%;
+}
+
+.actions-block {
+    float: left;
+    width: 50%;
+}
+
+.avatar {
+    width: 122px;
+    height: 262px;
+}

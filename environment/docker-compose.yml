@@ -36,3 +36,10 @@ services:
             - ./logs/fallout_cli:/var/log/fallout_cli
         links:
             - db
+    node-js:
+        build: ./node
+        container_name: fallout_cli_node-js
+        volumes_from:
+            - php-fpm
+        depends_on:
+            - php-fpm
