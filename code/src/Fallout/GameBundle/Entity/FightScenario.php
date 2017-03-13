@@ -66,5 +66,152 @@ class FightScenario
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-}
 
+    /**
+     * @param integer $enemiesCount
+     *
+     * @return FightScenario
+     */
+    public function setEnemiesCount($enemiesCount)
+    {
+        $this->enemiesCount = $enemiesCount;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getEnemiesCount()
+    {
+        return $this->enemiesCount;
+    }
+
+    /**
+     * @param integer $minHealth
+     *
+     * @return FightScenario
+     */
+    public function setMinHealth($minHealth)
+    {
+        $this->minHealth = $minHealth;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getMinHealth()
+    {
+        return $this->minHealth;
+    }
+
+    /**
+     * @param integer $maxHealth
+     *
+     * @return FightScenario
+     */
+    public function setMaxHealth($maxHealth)
+    {
+        $this->maxHealth = $maxHealth;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getMaxHealth()
+    {
+        return $this->maxHealth;
+    }
+
+    /**
+     * @param integer $minAttack
+     *
+     * @return FightScenario
+     */
+    public function setMinAttack($minAttack)
+    {
+        $this->minAttack = $minAttack;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getMinAttack()
+    {
+        return $this->minAttack;
+    }
+
+    /**
+     * @param integer $maxAttack
+     *
+     * @return FightScenario
+     */
+    public function setMaxAttack($maxAttack)
+    {
+        $this->maxAttack = $maxAttack;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getMaxAttack()
+    {
+        return $this->maxAttack;
+    }
+
+    /**
+     * @param integer $moves
+     *
+     * @return FightScenario
+     */
+    public function setMoves($moves)
+    {
+        $this->moves = $moves;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getMoves()
+    {
+        return $this->moves;
+    }
+
+    /**
+     * @param integer $scenarioId
+     *
+     * @return FightScenario
+     */
+    public function setScenarioId($scenarioId)
+    {
+        $this->scenarioId = $scenarioId;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getScenarioId()
+    {
+        return $this->scenarioId;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
