@@ -9,15 +9,13 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
- *      "weapon" = "WeaponItem",
- *      "armor" = "ArmorItem",
- *      "health" = "HealthItem",
+ *      "0" = "WeaponItem",
+ *      "1" = "ArmorItem",
+ *      "2" = "HealthItem",
  * })
  */
-class ItemAbstract
+abstract class ItemAbstract
 {
-    const TYPE_NAME = null;
-
     /**
      * @var string
      *
