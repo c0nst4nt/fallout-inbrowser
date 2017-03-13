@@ -13,7 +13,7 @@ class Version20170312212620 extends AbstractMigration
     public function up(Schema $schema)
     {
         $this->addSql(
-            'CREATE TABLE `items` (
+            'CREATE TABLE `item` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `name` VARCHAR (50),
                 `value` INT,
@@ -23,14 +23,56 @@ class Version20170312212620 extends AbstractMigration
             ) ENGINE InnoDB;'
         );
         $this->addSql(
-            'CREATE TABLE `players` (
+            'CREATE TABLE `player` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `name` VARCHAR (50),
-                `weapon_item_id` SMALLINT,
-                `armor_item_id` SMALLINT,
+                `item_store_id` SMALLINT,
+                `weapon_item_id` INT,
+                `armor_item_id` INT,
                 `health` SMALLINT,
                 `moves` SMALLINT,
+                PRIMARY KEY (`id`),
+                CONSTRAINT fk_weapon_item FOREIGN KEY (`weapon_item_id`) REFERENCES `item` (`id`),
+                CONSTRAINT fk_armor_item FOREIGN KEY (`armor_item_id`) REFERENCES `item` (`id`)
+            ) ENGINE InnoDB;'
+        );
+        $this->addSql(
+            'CREATE TABLE `item_store` (
+                `id` INT NOT NULL AUTO_INCREMENT,
+                `player_id` SMALLINT,
+                `item_id` SMALLINT,
                 PRIMARY KEY (`id`)
+            ) ENGINE InnoDB;'
+        );
+        $this->addSql(
+            'CREATE TABLE `scenario` (
+                `id` INT NOT NULL AUTO_INCREMENT,
+                `type` SMALLINT,
+                `type_id` INT,
+                PRIMARY KEY (`id`)              
+            ) ENGINE InnoDB;'
+        );
+        $this->addSql(
+            'CREATE TABLE `fight_scenario` (
+                `id` INT NOT NULL AUTO_INCREMENT,
+                `enemies_count` SMALLINT,
+                `min_health` SMALLINT,
+                `max_health` SMALLINT,
+                `min_attack` SMALLINT,
+                `max_attack` SMALLINT,
+                `moves` SMALLINT,
+                `scenario_id` INT,
+                PRIMARY KEY (`id`)              
+            ) ENGINE InnoDB;'
+        );
+        $this->addSql(
+            'CREATE TABLE `discover_scenario` (
+                `id` INT NOT NULL AUTO_INCREMENT,
+                `items_count` SMALLINT,
+                `min_health` SMALLINT,
+                `max_health` SMALLINT,
+                `scenario_id` INT,
+                PRIMARY KEY (`id`)              
             ) ENGINE InnoDB;'
         );
     }
@@ -40,7 +82,13 @@ class Version20170312212620 extends AbstractMigration
      */
     public function down(Schema $schema)
     {
-        $this->addSql('DROP TABLE `items`');
-        $this->addSql('DROP TABLE `players`');
+        $this->addSql('ALTER TABLE `player` DROP FOREIGN KEY `fk_weapon_item`;');
+        $this->addSql('ALTER TABLE `player` DROP FOREIGN KEY `fk_armor_item`;');
+        $this->addSql('DROP TABLE `item`;');
+        $this->addSql('DROP TABLE `player`;');
+        $this->addSql('DROP TABLE `item_store`;');
+        $this->addSql('DROP TABLE `scenario`;');
+        $this->addSql('DROP TABLE `fight_scenario`;');
+        $this->addSql('DROP TABLE `discover_scenario`;');
     }
 }
