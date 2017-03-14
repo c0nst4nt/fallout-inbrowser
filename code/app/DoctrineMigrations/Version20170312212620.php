@@ -45,14 +45,6 @@ class Version20170312212620 extends AbstractMigration
             ) ENGINE InnoDB;'
         );
         $this->addSql(
-            'CREATE TABLE `scenario` (
-                `id` INT NOT NULL AUTO_INCREMENT,
-                `type` SMALLINT,
-                `type_id` INT,
-                PRIMARY KEY (`id`)              
-            ) ENGINE InnoDB;'
-        );
-        $this->addSql(
             'CREATE TABLE `fight_scenario` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `enemies_count` SMALLINT,
@@ -61,7 +53,6 @@ class Version20170312212620 extends AbstractMigration
                 `min_attack` SMALLINT,
                 `max_attack` SMALLINT,
                 `moves` SMALLINT,
-                `scenario_id` INT,
                 PRIMARY KEY (`id`)              
             ) ENGINE InnoDB;'
         );
@@ -71,7 +62,6 @@ class Version20170312212620 extends AbstractMigration
                 `items_count` SMALLINT,
                 `min_health` SMALLINT,
                 `max_health` SMALLINT,
-                `scenario_id` INT,
                 PRIMARY KEY (`id`)              
             ) ENGINE InnoDB;'
         );

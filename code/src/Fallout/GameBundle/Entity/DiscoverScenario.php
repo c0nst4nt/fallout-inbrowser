@@ -33,13 +33,6 @@ class DiscoverScenario
     /**
      * @var integer
      *
-     * @ORM\Column(name="scenario_id", type="integer", nullable=true)
-     */
-    private $scenarioId;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -104,26 +97,6 @@ class DiscoverScenario
     public function getMaxHealth()
     {
         return $this->maxHealth;
-    }
-
-    /**
-     * @param integer $scenarioId
-     *
-     * @return DiscoverScenario
-     */
-    public function setScenarioId($scenarioId)
-    {
-        $this->scenarioId = $scenarioId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getScenarioId()
-    {
-        return $this->scenarioId;
     }
 
     /**
