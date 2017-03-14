@@ -1,3 +1,11 @@
-game_homepage:
-    path:     /
+game_menu:
+    path: /
+    defaults: { _controller: GameBundle:Interface:mainMenu }
+
+create_game:
+    path: /game/create
+    defaults: { _controller: GameBundle:Interface:createGame }
+
+main_screen:
+    path: /game/show
     defaults: { _controller: GameBundle:Interface:gameInterface }

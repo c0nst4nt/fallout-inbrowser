@@ -15,3 +15,4 @@
 /vendor/
 /web/bundles/
 /src/Fallout/GameBundle/Resources/frontend/node_modules/
+/src/Fallout/GameBundle/Resources/public/

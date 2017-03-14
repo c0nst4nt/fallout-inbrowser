@@ -3,12 +3,33 @@
 namespace Fallout\GameBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class InterfaceController extends Controller
 {
+    /**
+     * @return RedirectResponse|Response
+     */
     public function mainMenuAction()
     {
+        if ($this->get('fallout.player.main')->checkPlayerExist()) {
+            return $this->redirectToRoute('main_screen');
+        }
+
         return $this->render('GameBundle::menu.html.twig');
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function createGameAction(Request $request)
+    {
+        $this->get('fallout.player.main')->createPlayer();
+
+        return $this->redirectToRoute('main_screen');
     }
 
     public function gameInterfaceAction()

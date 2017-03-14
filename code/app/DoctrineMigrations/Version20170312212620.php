@@ -37,6 +37,17 @@ class Version20170312212620 extends AbstractMigration
             ) ENGINE InnoDB;'
         );
         $this->addSql(
+            'CREATE TABLE `main_player` (
+                `id` INT NOT NULL AUTO_INCREMENT,
+                `level` SMALLINT,
+                `strength` SMALLINT,
+                `agility` SMALLINT,
+                `perceive` SMALLINT,
+                `luck` SMALLINT,
+                PRIMARY KEY (`id`)
+            ) ENGINE InnoDB'
+        );
+        $this->addSql(
             'CREATE TABLE `item_store` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `player_id` SMALLINT,
@@ -76,8 +87,8 @@ class Version20170312212620 extends AbstractMigration
         $this->addSql('ALTER TABLE `player` DROP FOREIGN KEY `fk_armor_item`;');
         $this->addSql('DROP TABLE `item`;');
         $this->addSql('DROP TABLE `player`;');
+        $this->addSql('DROP TABLE `main_player`;');
         $this->addSql('DROP TABLE `item_store`;');
-        $this->addSql('DROP TABLE `scenario`;');
         $this->addSql('DROP TABLE `fight_scenario`;');
         $this->addSql('DROP TABLE `discover_scenario`;');
     }

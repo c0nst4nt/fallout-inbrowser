@@ -1,11 +1,12 @@
 {% extends '::base.html.twig' %}
+{% block body %}
 <div class="container">
     <div class="col-md-12">
         <div class="row">
             <ul>
-                <li><a href=""><h2>Resume game</h2></a></li>
-                <li><a href=""><h2>Create new game</h2></a></li>
+                <li><a href="{{ path('create_game') }}"><h2>Create new game</h2></a></li>
             </ul>
         </div>
     </div>
 </div>
+{% endblock %}

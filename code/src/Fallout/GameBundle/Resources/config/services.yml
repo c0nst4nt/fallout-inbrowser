@@ -1,1 +1,4 @@
 services:
+    fallout.player.main:
+        class: Fallout\GameBundle\Components\Player\Main\MainPlayer
+        arguments: ['@doctrine.orm.default_entity_manager']

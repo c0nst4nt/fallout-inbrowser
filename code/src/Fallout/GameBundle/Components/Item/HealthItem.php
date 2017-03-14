@@ -1,7 +1,7 @@
 <?php
 namespace Fallout\GameBundle\Components\Item;
 
-class WeaponItem implements ItemInterface
+class HealthItem implements ItemInterface
 {
     public function getValue()
     {
