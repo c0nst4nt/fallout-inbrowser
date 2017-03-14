@@ -14,3 +14,4 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/src/Fallout/GameBundle/Resources/frontend/node_modules/

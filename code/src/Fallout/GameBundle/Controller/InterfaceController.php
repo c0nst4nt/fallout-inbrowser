@@ -4,9 +4,14 @@ namespace Fallout\GameBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class InterfaceController extends Controller
 {
-    public function indexAction()
+    public function mainMenuAction()
+    {
+        return $this->render('GameBundle::menu.html.twig');
+    }
+
+    public function gameInterfaceAction()
     {
         return $this->render('GameBundle::main.screen.html.twig', [
             'strength_value' => 50,
