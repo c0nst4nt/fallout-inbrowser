@@ -2,11 +2,21 @@
 {% block body %}
 <div class="container">
     <div class="col-md-12">
-        <div class="row">
-            <ul>
-                <li><a href="{{ path('create_game') }}"><h2>Create new game</h2></a></li>
-            </ul>
-        </div>
+        {% if error is defined %}
+            <div class="row">
+                <h4>{{ error }}</h4>
+                <ul>
+                    <li><a href="{{ path('interface_main_screen') }}"><h2>Return to game</h2></a></li>
+                </ul>
+            </div>
+        {% else %}
+            <div class="row">
+                <ul>
+                    <li><a href="{{ path('interface_create_game') }}"><h2>Create new game</h2></a></li>
+                </ul>
+            </div>
+        {% endif %}
+
     </div>
 </div>
 {% endblock %}

@@ -7,11 +7,6 @@ use Fallout\GameBundle\Components\Item\WeaponItem;
 interface PlayerInterface
 {
     /**
-     * @return string
-     */
-    public function getName();
-
-    /**
      * @return int
      */
     public function getHealth();

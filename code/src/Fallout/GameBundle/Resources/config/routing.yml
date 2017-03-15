@@ -1,11 +1,39 @@
-game_menu:
+interface_game_menu:
     path: /
     defaults: { _controller: GameBundle:Interface:mainMenu }
 
-create_game:
+interface_create_game:
     path: /game/create
     defaults: { _controller: GameBundle:Interface:createGame }
 
-main_screen:
+interface_main_screen:
     path: /game/show
     defaults: { _controller: GameBundle:Interface:gameInterface }
+
+discover_search:
+    path: /discover
+    defaults: { _controller: GameBundle:Discover:search }
+
+discover_sleep:
+    path: /sleep
+    defaults: { _controller: GameBundle:Discover:sleep }
+
+fight_start:
+    path: /fight
+    defaults: { _controller: GameBundle:Battle:startBattle }
+
+fight_escape:
+    path: /fight/escape
+    defaults: { _controller: GameBundle:Battle:escapeBattle }
+
+fight_attack:
+    path: /fight/attack
+    defaults: { _controller: GameBundle:Battle:attackEnemy }
+
+fight_heal:
+    path: /fight/heal
+    defaults: { _controller: GameBundle:Battle:useHealthKit }
+
+player_distribute_score:
+    path: /player/distribute
+    defaults: { _controller: GameBundle:Player:distributeSpecialScore }

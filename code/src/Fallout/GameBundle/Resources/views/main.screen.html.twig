@@ -54,7 +54,7 @@
                                          aria-valuemin="0"
                                          aria-valuemax="100"
                                          style="width: {{ life_value }}%;">
-                                        {{ life_value }}%
+                                        {{ life_value }}
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                          aria-valuemin="0"
                                          aria-valuemax="100"
                                          style="width: {{ moves_value }}%;">
-                                        {{ moves_value }}%
+                                        {{ moves_value }}
                                     </div>
                                 </div>
                             </div>
@@ -78,22 +78,15 @@
         </div>
         <div class="col-md-6 actions-block">
             <div class="title-block">
-                <h2 class="text-center">Actions log</h2>
+                <h2 class="text-center">Pip Boy console</h2>
+            </div>
+            <div class="erase-block">
+                <input type="button" name="erase" class="btn btn-default" value="Clear console">
             </div>
             <div class="console-block">
-                <div class="console-row">Some content, test</div>
-                <div class="console-row">New content, test</div>
-                <div class="console-row">Other content, test</div>
-                <div class="console-row">Other content, test</div>
-                <div class="console-row">Other content, test</div>
-                <div class="console-row">Other content, test</div>
-                <div class="console-row">Other content, test</div>
-                <div class="console-row">Other content, test</div>
-                <div class="console-row">Other content, test</div>
-                <div class="console-row">Other content, test</div>
-                <div class="console-row">Other content, test</div>
-                <div class="console-row">Other content, test</div>
-                <div class="console-row">Other content, test</div>
+                {% autoescape %}
+                {{ console_initial_content|raw }}
+                {% endautoescape %}
             </div>
         </div>
     </div>

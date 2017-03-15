@@ -1,4 +1,5 @@
 <?php
+namespace Fallout\GameBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

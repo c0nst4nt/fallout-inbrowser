@@ -11,18 +11,23 @@
     margin: 10px 0;
 }
 
+.title-block,.erase-block {
+    float: left;
+}
+
+.erase-block input {
+    margin: 20px 0 0 80px;
+}
+
 .console-block {
     display: block;
     width: 530px;
     height: 250px;
     border: 1px solid #313131;
-    background-color: darkgreen;
+    background-color: rgba(53,197,53,0.83);
     color: #000;
     overflow-y: scroll;
-}
-
-.console-row {
-    padding: 2px 5px;
+    padding: 10px;
 }
 
 .console-row:after {

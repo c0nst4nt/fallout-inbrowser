@@ -1,3 +1,7 @@
-// var RestClient = require('./another-rest-client');
+var $ = require('jquery');
 
-// var api = new RestClient('http://example.com');
+$(function () {
+    $('input[name=erase]').on('click', function () {
+        $('.console-block').empty();
+    });
+});
