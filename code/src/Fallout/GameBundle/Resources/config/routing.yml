@@ -13,6 +13,8 @@ interface_main_screen:
 discover_search:
     path: /discover
     defaults: { _controller: GameBundle:Discover:search }
+    options:
+        expose: true
 
 discover_sleep:
     path: /sleep
