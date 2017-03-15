@@ -1,21 +1,9 @@
 <?php
 namespace Fallout\GameBundle\Components\Player\Main\Special;
 
-class AgilitySpecialParameter implements SpecialParameterInterface
+class AgilitySpecialParameter extends SpecialParameterAbstract
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
+    use SpecialParameterTrait;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getCurrentValue()
-    {
-        // TODO: Implement getCurrentValue() method.
-    }
+    const PARAMETER_NAME = 'Agility';
 }

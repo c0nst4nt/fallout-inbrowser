@@ -1,9 +1,9 @@
 <?php
 namespace Fallout\GameBundle\Components\Player\Main\Special;
 
-class LuckSpecialParameter extends SpecialParameterAbstract
+class LevelSpecialParameter extends SpecialParameterAbstract
 {
     use SpecialParameterTrait;
 
-    const PARAMETER_NAME = 'Luck';
+    const PARAMETER_NAME = 'Level';
 }

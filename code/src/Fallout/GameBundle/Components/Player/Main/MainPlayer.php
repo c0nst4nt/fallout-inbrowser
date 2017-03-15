@@ -13,6 +13,7 @@ class MainPlayer extends PlayerAbstract
     const BASE_HEALTH = 30;
     const BASE_MOVES = 2;
     const BASE_LEVEL = 1;
+    const MAX_LEVEL = 5;
 
     /**
      * @var Player
@@ -20,9 +21,9 @@ class MainPlayer extends PlayerAbstract
     private $playerInstance;
 
     /**
-     * @var MainPlayerEntity
+     * @var AbilitiesManager
      */
-    private $playerData;
+    private $abilitiesManager;
 
     /**
      * @var EntityManager
@@ -32,26 +33,10 @@ class MainPlayer extends PlayerAbstract
     /**
      * @param EntityManager $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(AbilitiesManager $abilitiesManager, EntityManager $entityManager)
     {
+        $this->abilitiesManager = $abilitiesManager;
         $this->entityManager = $entityManager;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLevel()
-    {
-        $this->playerData->getLevel();
-    }
-
-    /**
-     * @param int $level
-     * @return $this
-     */
-    public function setLevel($level)
-    {
-        $this->playerData->setLevel($level);
     }
 
     public function getWeapon()
@@ -75,7 +60,7 @@ class MainPlayer extends PlayerAbstract
     public function setArmor()
     {
     }
-    
+
     /**
      * @return int
      */
@@ -93,85 +78,19 @@ class MainPlayer extends PlayerAbstract
     }
 
     /**
-     * @return int
-     */
-    public function getStrength()
-    {
-        return $this->playerData->getStrength();
-    }
-
-    /**
-     * @param int $strength
-     */
-    public function setStrength($strength)
-    {
-        $this->playerData->setStrength($strength);
-    }
-
-    /**
-     * @return int
-     */
-    public function getAgility()
-    {
-        return $this->playerData->getAgility();
-    }
-
-    /**
-     * @param int $agility
-     */
-    public function setAgility($agility)
-    {
-        $this->playerData->setAgility($agility);
-    }
-
-    /**
-     * @return int
-     */
-    public function getPerceive()
-    {
-        return $this->playerData->getPerceive();
-    }
-
-    /**
-     * @param int $perceive
-     */
-    public function setPerceive($perceive)
-    {
-        $this->playerData->setPerceive($perceive);
-    }
-
-    /**
-     * @return int
-     */
-    public function getLuck()
-    {
-        return $this->playerData->getLuck();
-    }
-
-    /**
-     * @param int $luck
-     */
-    public function setLuck($luck)
-    {
-        $this->playerData->setLuck($luck);
-    }
-
-    /**
      * @return array
      */
     public function getPlayerData()
     {
         return [
-            'strength_value' => $this->getStrength(),
-            'agility_value' => $this->getAgility(),
-            'perceive_value' => $this->getPerceive(),
-            'luck_value' => $this->getLuck(),
+            'strength_value' => $this->abilitiesManager->getStrength(),
+            'agility_value' => $this->abilitiesManager->getAgility(),
+            'perceive_value' => $this->abilitiesManager->getPerceive(),
+            'luck_value' => $this->abilitiesManager->getLuck(),
             'life_value' => $this->getHealth(),
-            'moves_value' => 0,
             'current_attack' => 0,
             'max_steps' => 0,
-            'accuracy' => 0,
-            'critical_chance' => 0,
+            'moves_value' => 0,
         ];
     }
 
@@ -185,17 +104,17 @@ class MainPlayer extends PlayerAbstract
         }
 
         $mainPlayer = new Player();
-        $mainPlayer->setName(MainPlayer::PLAYER_NAME);
-        $mainPlayer->setMoves(MainPlayer::BASE_MOVES);
-        $mainPlayer->setHealth(MainPlayer::BASE_HEALTH);
+        $mainPlayer->setName(self::PLAYER_NAME);
+        $mainPlayer->setMoves(self::BASE_MOVES);
+        $mainPlayer->setHealth(self::BASE_HEALTH);
         $this->entityManager->persist($mainPlayer);
         
         $mainPlayerInfo = new MainPlayerEntity();
         $mainPlayerInfo->setLevel(self::BASE_LEVEL);
-        $mainPlayerInfo->setStrength(SpecialParameterInterface::BEGIN_VALUE);
-        $mainPlayerInfo->setAgility(SpecialParameterInterface::BEGIN_VALUE);
-        $mainPlayerInfo->setPerceive(SpecialParameterInterface::BEGIN_VALUE);
-        $mainPlayerInfo->setLuck(SpecialParameterInterface::BEGIN_VALUE);
+        $mainPlayerInfo->setStrength(SpecialParameterInterface::BASE_VALUE);
+        $mainPlayerInfo->setAgility(SpecialParameterInterface::BASE_VALUE);
+        $mainPlayerInfo->setPerceive(SpecialParameterInterface::BASE_VALUE);
+        $mainPlayerInfo->setLuck(SpecialParameterInterface::BASE_VALUE);
         $this->entityManager->persist($mainPlayerInfo);
 
         $this->entityManager->flush();
@@ -218,15 +137,10 @@ class MainPlayer extends PlayerAbstract
      */
     private function initPlayer()
     {
-        if (is_null($this->playerInstance) || is_null($this->playerData)) {
+        if (is_null($this->playerInstance)) {
             $playerInstance = $this->entityManager->getRepository(Player::class)
-                ->findOneBy(['name' => MainPlayer::PLAYER_NAME]);
+                ->findOneBy(['name' => self::PLAYER_NAME]);
             $this->playerInstance = $playerInstance ?: null;
-            $playerData = $this->entityManager->getRepository(MainPlayerEntity::class)
-                ->findAll();
-            if ($playerData) {
-                $this->playerData = array_shift($playerData);
-            }
         }
     }
 }

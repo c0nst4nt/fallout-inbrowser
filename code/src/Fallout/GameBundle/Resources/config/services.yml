@@ -1,4 +1,14 @@
 services:
+    fallout.player.ability.factory:
+        class: Fallout\GameBundle\Components\Player\Main\Special\AbilityFactory
+        arguments: ['@doctrine.orm.default_entity_manager']
+
+    fallout.player.ability.manager:
+        class: Fallout\GameBundle\Components\Player\Main\AbilitiesManager
+        arguments: ['@fallout.player.ability.factory']
+        calls:
+            - ['createAbilities']
+
     fallout.player.main:
         class: Fallout\GameBundle\Components\Player\Main\MainPlayer
-        arguments: ['@doctrine.orm.default_entity_manager']
+        arguments: ['@fallout.player.ability.manager', '@doctrine.orm.default_entity_manager']
