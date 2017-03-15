@@ -1,10 +1,52 @@
 var $ = require('jquery');
-if (__RELEASE__) {
-    require('fosjsrouting');
-    require('../../../../../../web/js/fos_js_routes.js');
-}
-var RestClient = require('another-rest-client');
-var api = new RestClient('http://localhost/app_dev.php');
+require('fos-js-routing');
+require('fos-js-routes');
+
+var QueryClient = {
+    make: function (route, parameters) {
+        if (!parameters) {
+            parameters = {};
+        }
+
+        $.ajax({
+            url: route,
+            data: parameters,
+            success: function (xhr) {
+                console.log(xhr);
+            }
+        });
+    }
+};
+
+var QueryManager = {
+    discover: function () {
+        QueryClient.make(Routing.generate('discover_search'));
+    },
+    sleep: function () {
+        QueryClient.make(Routing.generate('discover_sleep'));
+    },
+    startFight: function () {
+        QueryClient.make(Routing.generate('fight_start'));
+    },
+    escape: function() {
+        QueryClient.make(Routing.generate('fight_escape'));
+    },
+    attack: function () {
+
+    },
+    moveForward: function () {
+
+    },
+    moveBackward: function () {
+
+    },
+    useHealthKit: function () {
+
+    },
+    changeScore: function (score) {
+
+    }
+};
 
 $(function () {
     $('input[name=erase]').on('click', function () {
@@ -12,25 +54,18 @@ $(function () {
     });
 
     $('input[name=discover]').on('click', function () {
-        api.res('discover').get({test: 'some-content'});
-
-        api.on('response', function(xhr) {
-            console.log(xhr);
-        });
+        QueryManager.discover();
     });
 
     $('input[name=sleep]').on('click', function () {
-        console.log('sleep');
+        QueryManager.sleep();
     });
 
     $('input[name=fight]').on('click', function () {
-        console.log('fight');
+        QueryManager.startFight();
     });
 
     $('input[name=escape]').on('click', function () {
-        console.log('escape');
+        QueryManager.escape();
     });
-
-    // TODO :: implement fight buttons and actions
-    // TODO :: implement level up and score distribute buttons and actions
 });

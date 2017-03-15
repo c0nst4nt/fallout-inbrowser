@@ -1,5 +1,7 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
+var webPath = '../../../../../../web';
+
 module.exports = {
     entry: "./scripts/application.js",
     output: {
@@ -14,8 +16,9 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            'fosjsrouting': path.join(__dirname, '../../web/bundles/fosjsrouting/js/router.js')
+            'fos-js-routing': webPath + '/bundles/fosjsrouting/js/router.js',
+            'fos-js-routes': webPath + '/js/fos_js_routes.js'
         },
-        extensions: ['', '.js']
+        extensions: ['.js']
     }
 };

@@ -32,3 +32,6 @@ monolog:
 
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
+
+parameters:
+    router.request_context.base_url: "app_dev.php"

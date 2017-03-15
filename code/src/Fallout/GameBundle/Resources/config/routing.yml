@@ -19,23 +19,35 @@ discover_search:
 discover_sleep:
     path: /sleep
     defaults: { _controller: GameBundle:Discover:sleep }
+    options:
+        expose: true
 
 fight_start:
     path: /fight
     defaults: { _controller: GameBundle:Battle:startBattle }
+    options:
+        expose: true
 
 fight_escape:
     path: /fight/escape
     defaults: { _controller: GameBundle:Battle:escapeBattle }
+    options:
+        expose: true
 
 fight_attack:
     path: /fight/attack
     defaults: { _controller: GameBundle:Battle:attackEnemy }
+    options:
+        expose: true
 
 fight_heal:
     path: /fight/heal
     defaults: { _controller: GameBundle:Battle:useHealthKit }
+    options:
+        expose: true
 
 player_distribute_score:
     path: /player/distribute
     defaults: { _controller: GameBundle:Player:distributeSpecialScore }
+    options:
+        expose: true
