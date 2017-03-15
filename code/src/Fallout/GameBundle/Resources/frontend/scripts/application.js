@@ -1,6 +1,9 @@
-var RestClient = require('another-rest-client');
 var $ = require('jquery');
-
+if (__RELEASE__) {
+    require('fosjsrouting');
+    require('../../../../../../web/js/fos_js_routes.js');
+}
+var RestClient = require('another-rest-client');
 var api = new RestClient('http://localhost/app_dev.php');
 
 $(function () {

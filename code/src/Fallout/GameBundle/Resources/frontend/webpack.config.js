@@ -11,5 +11,11 @@ module.exports = {
             { from: 'images/*', to: '../public' },
             { from: 'styles/*', to: '../public' }
         ])
-    ]
+    ],
+    resolve: {
+        alias: {
+            'fosjsrouting': path.join(__dirname, '../../web/bundles/fosjsrouting/js/router.js')
+        },
+        extensions: ['', '.js']
+    }
 };
