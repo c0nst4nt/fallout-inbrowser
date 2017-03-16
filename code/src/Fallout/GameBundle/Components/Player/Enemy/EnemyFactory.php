@@ -18,8 +18,10 @@ class EnemyFactory
         $this->entityManager = $entityManager;
     }
 
-    public function createEnemyPlayer($health, $armor, $moves)
+    public function createEnemyPlayer($health, $attack, $moves)
     {
-
+        return $this->entityManager->createQuery(
+            'SELECT p FROM GameBundle:Player p WHERE p.health = :health'
+        )->setParameter('health', $health)->getOneOrNullResult();
     }
 }

@@ -53,7 +53,7 @@ class ScenarioManager
         $index = $this->defineRandomFromList($availableIndexes);
         $scenario = $scenarios[$index];
 
-        if ($scenario instanceof FightScenario::class) {
+        if ($scenario instanceof FightScenario) {
             $enemies = $this->createEnemies($scenario);
             $this->saveCurrentScenario($scenario, $enemies);
         }
