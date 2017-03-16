@@ -4,7 +4,7 @@ namespace Fallout\GameBundle\Components\Player\Main;
 use Doctrine\ORM\EntityManager;
 use Fallout\GameBundle\Components\Player\Main\Special\SpecialParameterInterface;
 use Fallout\GameBundle\Components\Player\PlayerAbstract;
-use Fallout\GameBundle\Entity\MainPlayer as MainPlayerEntity;
+use Fallout\GameBundle\Entity\PlayerAbilities;
 use Fallout\GameBundle\Entity\Player;
 
 class MainPlayer extends PlayerAbstract
@@ -87,7 +87,7 @@ class MainPlayer extends PlayerAbstract
         $mainPlayer->setHealth(self::BASE_HEALTH);
         $this->entityManager->persist($mainPlayer);
         
-        $mainPlayerInfo = new MainPlayerEntity();
+        $mainPlayerInfo = new PlayerAbilities();
         $mainPlayerInfo->setLevel(self::BASE_LEVEL);
         $mainPlayerInfo->setStrength(SpecialParameterInterface::BASE_VALUE);
         $mainPlayerInfo->setAgility(SpecialParameterInterface::BASE_VALUE);

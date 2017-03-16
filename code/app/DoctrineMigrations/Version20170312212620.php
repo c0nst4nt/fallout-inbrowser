@@ -37,9 +37,10 @@ class Version20170312212620 extends AbstractMigration
             ) ENGINE InnoDB;'
         );
         $this->addSql(
-            'CREATE TABLE `main_player` (
+            'CREATE TABLE `player_abilities` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `level` SMALLINT,
+                `experience` SMALLINT,
                 `strength` SMALLINT,
                 `agility` SMALLINT,
                 `perceive` SMALLINT,
@@ -59,6 +60,7 @@ class Version20170312212620 extends AbstractMigration
             'CREATE TABLE `fight_scenario` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `enemies_count` SMALLINT,
+                `experience_reward` SMALLINT,
                 `min_health` SMALLINT,
                 `max_health` SMALLINT,
                 `min_attack` SMALLINT,
@@ -78,6 +80,16 @@ class Version20170312212620 extends AbstractMigration
                 PRIMARY KEY (`id`)              
             ) ENGINE InnoDB;'
         );
+        $this->addSql(
+            'CREATE TABLE `current_scenario` (
+                `id` INT NOT NULL AUTO_INCREMENT,
+                `scenario_id` SMALLINT,
+                `distance` SMALLINT,
+                `enemy_health` SMALLINT,
+                `enemies_left` SMALLINT,
+                PRIMARY KEY (`id`)
+            ) ENGINE InnoDb'
+        );
     }
 
     /**
@@ -89,9 +101,10 @@ class Version20170312212620 extends AbstractMigration
         $this->addSql('ALTER TABLE `player` DROP FOREIGN KEY `fk_armor_item`;');
         $this->addSql('DROP TABLE `item`;');
         $this->addSql('DROP TABLE `player`;');
-        $this->addSql('DROP TABLE `main_player`;');
+        $this->addSql('DROP TABLE `player_abilities`;');
         $this->addSql('DROP TABLE `item_store`;');
         $this->addSql('DROP TABLE `fight_scenario`;');
         $this->addSql('DROP TABLE `discover_scenario`;');
+        $this->addSql('DROP TABLE `current_scenario`;');
     }
 }

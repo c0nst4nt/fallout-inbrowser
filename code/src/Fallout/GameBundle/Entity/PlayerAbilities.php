@@ -1,14 +1,13 @@
 <?php
-
 namespace Fallout\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="main_player")
+ * @ORM\Table(name="player_abilities")
  * @ORM\Entity
  */
-class MainPlayer
+class PlayerAbilities
 {
     /**
      * @var integer
@@ -46,6 +45,13 @@ class MainPlayer
     private $luck;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="experience", type="smallint", nullable=true)
+     */
+    private $experience;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -57,7 +63,7 @@ class MainPlayer
     /**
      * @param integer $level
      *
-     * @return MainPlayer
+     * @return PlayerAbilities
      */
     public function setLevel($level)
     {
@@ -77,7 +83,7 @@ class MainPlayer
     /**
      * @param integer $strength
      *
-     * @return MainPlayer
+     * @return PlayerAbilities
      */
     public function setStrength($strength)
     {
@@ -97,7 +103,7 @@ class MainPlayer
     /**
      * @param integer $agility
      *
-     * @return MainPlayer
+     * @return PlayerAbilities
      */
     public function setAgility($agility)
     {
@@ -117,7 +123,7 @@ class MainPlayer
     /**
      * @param integer $perceive
      *
-     * @return MainPlayer
+     * @return PlayerAbilities
      */
     public function setPerceive($perceive)
     {
@@ -137,7 +143,7 @@ class MainPlayer
     /**
      * @param integer $luck
      *
-     * @return MainPlayer
+     * @return PlayerAbilities
      */
     public function setLuck($luck)
     {
@@ -152,6 +158,26 @@ class MainPlayer
     public function getLuck()
     {
         return $this->luck;
+    }
+
+    /**
+     * @return int
+     */
+    public function getExperience()
+    {
+        return $this->experience;
+    }
+
+    /**
+     * @param $experience
+     *
+     * @return $this
+     */
+    public function setExperience($experience)
+    {
+        $this->experience = $experience;
+
+        return $this;
     }
 
     /**

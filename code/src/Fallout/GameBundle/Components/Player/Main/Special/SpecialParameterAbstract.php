@@ -2,7 +2,7 @@
 namespace Fallout\GameBundle\Components\Player\Main\Special;
 
 use Doctrine\ORM\EntityManager;
-use Fallout\GameBundle\Entity\MainPlayer;
+use Fallout\GameBundle\Entity\PlayerAbilities;
 
 abstract class SpecialParameterAbstract implements SpecialParameterInterface
 {
@@ -29,7 +29,7 @@ abstract class SpecialParameterAbstract implements SpecialParameterInterface
      */
     public function getCurrentValue()
     {
-        $playerData = $this->entityManager->getRepository(MainPlayer::class)->findAll();
+        $playerData = $this->entityManager->getRepository(PlayerAbilities::class)->findAll();
         if ($playerData) {
             $playerData = array_shift($playerData);
         }
@@ -43,13 +43,13 @@ abstract class SpecialParameterAbstract implements SpecialParameterInterface
      */
     public function setCurrentValue($value)
     {
-        $playerData = $this->entityManager->getRepository(MainPlayer::class)->findAll();
+        $playerData = $this->entityManager->getRepository(PlayerAbilities::class)->findAll();
         if ($playerData) {
             $playerData = array_shift($playerData);
 
             $this->validateValue($value);
 
-            /** @var MainPlayer $playerData */
+            /** @var PlayerAbilities $playerData */
             call_user_func([$playerData, 'set'.$this->getName()], $value);
 
             return true;

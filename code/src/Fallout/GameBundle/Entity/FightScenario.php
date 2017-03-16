@@ -59,6 +59,13 @@ class FightScenario
     private $description;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="experience_reward", type="smallint", nullable=true)
+     */
+    private $experienceReward;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -188,7 +195,7 @@ class FightScenario
     }
 
     /**
-     * @param $description
+     * @param string $description
      *
      * @return $this
      */
@@ -205,6 +212,26 @@ class FightScenario
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @param integer $experienceReward
+     *
+     * @return $this
+     */
+    public function setExperienceReward($experienceReward)
+    {
+        $this->experienceReward = $experienceReward;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getExperienceReward()
+    {
+        return $this->experienceReward;
     }
 
     /**
