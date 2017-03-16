@@ -37,6 +37,10 @@ docker-compose exec php-fpm bin/console fos:js-routing:dump
 docker-compose run --rm node-js ./node_modules/.bin/webpack
 ``` 
 
+Then you can try to open browser and type
+"http://localhost/".
+Then you must see menu page with single link. This means that everything is working.
+
 If you didn't choose the Docker installation, you need install separately "Nginx", "PHP 5.6" and "MySql 5.7", composer, node js. 
 Then follow commands without referencing to the containers. E.g.
 ```
