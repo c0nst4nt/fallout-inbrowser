@@ -1,53 +1,40 @@
 <?php
+namespace Fallout\GameBundle\Components\Player\Enemy;
 
-use Fallout\GameBundle\Components\Item\ArmorItem;
+use Doctrine\ORM\EntityManager;
 use Fallout\GameBundle\Components\Player\PlayerAbstract;
 
 class EnemyPlayer extends PlayerAbstract
 {
+    /**
+     * @var EntityManager
+     */
+    private $entityManager;
+
+    /**
+     * @param EntityManager $entityManager
+     */
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function getRewardExperience()
     {
+    }
 
+    public function setHealth()
+    {
     }
 
     public function getHealth()
     {
-        // TODO: Implement getHealth() method.
     }
 
     /**
      * @return string
      */
     public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
-
-    public function getWeapon()
-    {
-        // TODO: Implement getWeapon() method.
-    }
-
-    /**
-     * @return ArmorItem
-     */
-    public function getArmor()
-    {
-        // TODO: Implement getArmor() method.
-    }
-
-    /**
-     * @param int $level
-     * @return $this
-     */
-    public function setCurrentLevel($level)
-    {
-    }
-
-    /**
-     * @return int
-     */
-    public function getCurrentLevel()
     {
     }
 }

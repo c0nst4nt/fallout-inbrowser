@@ -65,7 +65,6 @@ abstract class SpecialParameterAbstract implements SpecialParameterInterface
      */
     private function validateValue($parameterValue)
     {
-        // TODO :: rewrite this to symfony validation
         if ($parameterValue < self::BASE_VALUE || $parameterValue > self::MAX_VALUE) {
             throw new \RuntimeException(sprintf('\'%\' special parameter is wrong', $this->getName()));
         }

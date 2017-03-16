@@ -64,6 +64,7 @@ class Version20170312212620 extends AbstractMigration
                 `min_attack` SMALLINT,
                 `max_attack` SMALLINT,
                 `moves` SMALLINT,
+                `description` TINYTEXT,
                 PRIMARY KEY (`id`)              
             ) ENGINE InnoDB;'
         );
@@ -73,6 +74,7 @@ class Version20170312212620 extends AbstractMigration
                 `items_count` SMALLINT,
                 `min_health` SMALLINT,
                 `max_health` SMALLINT,
+                `description` TINYTEXT,
                 PRIMARY KEY (`id`)              
             ) ENGINE InnoDB;'
         );

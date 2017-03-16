@@ -31,6 +31,13 @@ class DiscoverScenario
     private $maxHealth;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -97,6 +104,26 @@ class DiscoverScenario
     public function getMaxHealth()
     {
         return $this->maxHealth;
+    }
+
+    /**
+     * @param $description
+     *
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**

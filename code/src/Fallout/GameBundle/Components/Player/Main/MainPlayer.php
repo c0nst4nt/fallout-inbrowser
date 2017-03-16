@@ -39,28 +39,6 @@ class MainPlayer extends PlayerAbstract
         $this->entityManager = $entityManager;
     }
 
-    public function getWeapon()
-    {
-    }
-
-    public function setWeapon()
-    {
-    }
-
-    /**
-     * @return \Fallout\GameBundle\Components\Item\ArmorItem
-     */
-    public function getArmor()
-    {
-    }
-
-    /**
-     * @return \Fallout\GameBundle\Components\Item\ArmorItem
-     */
-    public function setArmor()
-    {
-    }
-
     /**
      * @return int
      */

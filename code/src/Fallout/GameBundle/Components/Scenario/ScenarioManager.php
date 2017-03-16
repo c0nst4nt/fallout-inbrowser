@@ -3,7 +3,7 @@ namespace Fallout\GameBundle\Components\Scenario;
 
 class ScenarioManager
 {
-    public function createScenario()
+    public function generateScenario()
     {
         return mt_rand();
     }
