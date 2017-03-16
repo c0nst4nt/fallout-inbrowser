@@ -1,6 +1,7 @@
 <?php
+namespace Fallout\GameBundle\Components\Scenario;
 
 interface ScenarioInterface
 {
-    public function getAction($actionFactor);
+    public function getDescription();
 }

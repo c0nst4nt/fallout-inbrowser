@@ -12,3 +12,7 @@ services:
     fallout.player.main:
         class: Fallout\GameBundle\Components\Player\Main\MainPlayer
         arguments: ['@fallout.player.ability.manager', '@doctrine.orm.default_entity_manager']
+
+    fallout.scenario.manager:
+        class: Fallout\GameBundle\Components\Scenario\ScenarioManager
+        arguments: ['@doctrine.orm.default_entity_manager']

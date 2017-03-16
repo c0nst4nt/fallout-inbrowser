@@ -9,8 +9,9 @@ class DiscoverController extends Controller
 {
     public function searchAction(Request $request)
     {
+        $scenario = $this->get('fallout.scenario.manager')->generateScenario();
 
-        return new JsonResponse();
+        return new JsonResponse(['description' => $scenario->getDescription()]);
     }
 
     public function sleepAction()

@@ -1,7 +1,12 @@
 <?php
+namespace Fallout\GameBundle\Components\Scenario;
 
-class BattleScenario
+class BattleScenario implements ScenarioInterface
 {
+    public function getDescription()
+    {
+    }
+
     public function getEnemies()
     {
 
