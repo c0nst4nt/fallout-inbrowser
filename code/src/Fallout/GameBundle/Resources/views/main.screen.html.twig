@@ -22,14 +22,20 @@
                 <div class="col-md-4 left-menu-block">
                     {% include '@Game/special.block.html.twig' %}
                 </div>
-                <div class="col-md-3 col-md-offset-1 avatar"
+                <div class="col-md-2 avatar"
                      style="background: url({{ asset('bundles/game/images/characters.png') }}) no-repeat"></div>
-                <div class="col-md-1 col-md-offset-1 right-menu-block">
-                    <div class="action-buttons">
+                <div class="col-md-5 right-menu-block">
+                    <div class="col-md-6 action-buttons">
                         <input type="button" name="discover" value="Discover" class="btn btn-success">
                         <input type="button" name="sleep" value="Sleep" class="btn btn-primary">
                         <input type="button" name="fight" value="Fight" class="btn btn-danger">
                         <input type="button" name="escape" value="Escape" class="btn btn-warning">
+                    </div>
+                    <div class="col-md-6 fight-buttons">
+                        <input type="button" name="attack" value="Attack"class="btn">
+                        <input type="button" name="forward" value="Move forward" class="btn">
+                        <input type="button" name="backward" value="Move backward" class="btn">
+                        <input type="button" name="health" value="Use health kit" class="btn">
                     </div>
                 </div>
             </div>

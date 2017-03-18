@@ -1,13 +1,21 @@
+.score-button > input {
+    width: 22px;
+    height: 21px;
+    padding: 0;
+    float: left;
+    margin: 0 5px;
+}
+
 .avatar {
     width: 122px;
     height: 262px;
 }
 
-.action-buttons {
+.right-menu-block {
     margin-top: 25px;
 }
 
-.action-buttons > input {
+.right-menu-block input {
     margin: 10px 0;
 }
 

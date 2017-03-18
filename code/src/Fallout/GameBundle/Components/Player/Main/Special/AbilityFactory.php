@@ -18,6 +18,9 @@ class AbilityFactory
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * @return SpecialParameterInterface[]
+     */
     public function createAbilities()
     {
         $availableAbilities = [

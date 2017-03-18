@@ -101,7 +101,7 @@ class AbilitiesManager
      */
     public function getLuck()
     {
-        $this->abilities[LuckSpecialParameter::class]->getCurrentValue();
+        return $this->abilities[LuckSpecialParameter::class]->getCurrentValue();
     }
 
     /**

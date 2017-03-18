@@ -24,7 +24,7 @@ var eventsSetter = {
                             console.log('fight');
                             break;
                         default:
-                            throw new Error('There was unknown discover type: ' + response.type);
+                            console.log('There was unknown discover type: ' + response.type);
                     }
                 }
             );
