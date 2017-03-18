@@ -14,7 +14,20 @@ var eventsSetter = {
         });
 
         $('input[name=discover]').on('click', function () {
-            eventsSetter.getManager().discover();
+            eventsSetter.getManager().discover(
+                function (response) {
+                    switch (response.type) {
+                        case 'discover':
+                            console.log('discover');
+                            break;
+                        case 'fight':
+                            console.log('fight');
+                            break;
+                        default:
+                            throw new Error('There was unknown discover type: ' + response.type);
+                    }
+                }
+            );
         });
 
         $('input[name=sleep]').on('click', function () {

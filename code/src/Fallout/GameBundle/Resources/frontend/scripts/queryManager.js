@@ -6,9 +6,12 @@ var queryManager = {
     getClient: function () {
         return this.client;
     },
-    discover: function () {
-        var response = queryManager.getClient().make(Routing.generate('discover_search'));
-        console.log(response);
+    discover: function (resultHandler) {
+        queryManager.getClient().make(
+            Routing.generate('discover_search'),
+            {},
+            resultHandler
+        );
     },
     sleep: function () {
         queryManager.getClient().make(Routing.generate('discover_sleep'));

@@ -1,21 +1,19 @@
 var $ = require('jquery');
 
 var httpClient = {
-    make: function (route, parameters) {
+    make: function (route, parameters, resultHandler) {
         if (!parameters) {
             parameters = {};
         }
 
-        var response = null;
         $.ajax({
             url: route,
             data: parameters,
+            dataType: 'json',
             success: function (xhr) {
-                response = xhr;
+                resultHandler(xhr);
             }
         });
-
-        return response;
     }
 };
 
