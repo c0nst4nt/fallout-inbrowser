@@ -69,6 +69,8 @@ class MainPlayer extends PlayerAbstract
             'current_attack' => 0,
             'max_steps' => 0,
             'moves_value' => 0,
+            'level' => 0,
+            'experience' => 0,
         ];
     }
 

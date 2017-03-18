@@ -57,8 +57,8 @@ class InterfaceController extends Controller
             'moves_value' => 0,
             'current_attack' => 0,
             'max_steps' => 0,
-            'accuracy' => 0,
-            'critical_chance' => 0,
+            'level' => 0,
+            'experience' => 0,
         ];
         if ($this->get('fallout.player.main')->checkPlayerExist()) {
             $playerData = $this->get('fallout.player.main')->getPlayerData();
