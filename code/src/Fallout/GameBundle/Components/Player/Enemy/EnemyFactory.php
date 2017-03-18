@@ -21,7 +21,7 @@ class EnemyFactory
     public function createEnemyPlayer($health, $attack, $moves)
     {
         return $this->entityManager->createQuery(
-            'SELECT p FROM GameBundle:Player p WHERE p.health = :health'
+            'SELECT p FROM GameBundle:Player p WHERE p.health = :health AND p.name <> \'main\''
         )->setParameter('health', $health)->getOneOrNullResult();
     }
 }

@@ -1,4 +1,7 @@
+var $ = require('jquery');
+
 var eventsSetter = {
+    manager: {},
     setManager: function (manager) {
         this.manager = manager;
     },
@@ -11,21 +14,21 @@ var eventsSetter = {
         });
 
         $('input[name=discover]').on('click', function () {
-            this.getManager().discover();
+            eventsSetter.getManager().discover();
         });
 
         $('input[name=sleep]').on('click', function () {
-            this.getManager().sleep();
+            eventsSetter.getManager().sleep();
         });
 
         $('input[name=fight]').on('click', function () {
-            this.getManager().startFight();
+            eventsSetter.getManager().startFight();
         });
 
         $('input[name=escape]').on('click', function () {
-            this.getManager().escape();
+            eventsSetter.getManager().escape();
         });
     }
 };
 
-module.exports(eventsSetter);
+module.exports = eventsSetter;

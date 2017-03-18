@@ -1,4 +1,5 @@
 var queryManager = {
+    client: {},
     setClient: function (client) {
         this.client = client;
     },
@@ -6,17 +7,17 @@ var queryManager = {
         return this.client;
     },
     discover: function () {
-        var response = this.getClient().make(Routing.generate('discover_search'));
+        var response = queryManager.getClient().make(Routing.generate('discover_search'));
         console.log(response);
     },
     sleep: function () {
-        this.getClient().make(Routing.generate('discover_sleep'));
+        queryManager.getClient().make(Routing.generate('discover_sleep'));
     },
     startFight: function () {
-        this.getClient().make(Routing.generate('fight_start'));
+        queryManager.getClient().make(Routing.generate('fight_start'));
     },
     escape: function() {
-        this.getClient().make(Routing.generate('fight_escape'));
+        queryManager.getClient().make(Routing.generate('fight_escape'));
     },
     attack: function () {
 
@@ -35,4 +36,4 @@ var queryManager = {
     }
 };
 
-module.exports(queryManager);
+module.exports = queryManager;

@@ -1,3 +1,5 @@
+var $ = require('jquery');
+
 var httpClient = {
     make: function (route, parameters) {
         if (!parameters) {
@@ -17,4 +19,4 @@ var httpClient = {
     }
 };
 
-module.exports(httpClient);
+module.exports = httpClient;

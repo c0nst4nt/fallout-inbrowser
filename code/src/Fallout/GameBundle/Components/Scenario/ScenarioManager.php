@@ -49,8 +49,7 @@ class ScenarioManager
         }
 
         $scenarios = $this->entityManager->getRepository($entityType)->findAll();
-        $availableIndexes = array_keys($scenarios);
-        $index = $this->defineRandomFromList($availableIndexes);
+        $index = $this->defineRandomFromList(array_keys($scenarios));
         $scenario = $scenarios[$index];
 
         if ($scenario instanceof FightScenario) {
