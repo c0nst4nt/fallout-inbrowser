@@ -43,7 +43,7 @@ class InterfaceController extends Controller
      */
     public function gameInterfaceAction()
     {
-        $playerData = [
+        $defaultPlayerData = [
             'strength_value' => 0,
             'strength_bar_value' => 0,
             'agility_value' => 0,
@@ -67,15 +67,18 @@ class InterfaceController extends Controller
             $playerData['perceive_bar_value'] = $this->calculateBarValue(SpecialParameterInterface::MAX_VALUE, $playerData['perceive_value']);
             $playerData['luck_bar_value'] = $this->calculateBarValue(SpecialParameterInterface::MAX_VALUE, $playerData['luck_value']);
             $playerData['life_bar_value'] = $this->calculateBarValue(MainPlayer::BASE_HEALTH, $playerData['life_value']);
+        } else {
+            $playerData = $defaultPlayerData;
         }
 
-        return $this->render(
-            'GameBundle::main.screen.html.twig',
-            array_merge(
+        if ($playerData['experience'] === 0) {
+            $playerData = array_merge(
                 $playerData,
                 ['console_initial_content' => $this->renderView('GameBundle::console.initial.html.twig')]
-            )
-        );
+            );
+        }
+
+        return $this->render('GameBundle::main.screen.html.twig', $playerData);
     }
 
     /**

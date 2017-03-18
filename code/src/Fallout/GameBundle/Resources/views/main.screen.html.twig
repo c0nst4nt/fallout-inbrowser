@@ -90,9 +90,11 @@
                 <input type="button" name="erase" class="btn btn-default" value="Clear console">
             </div>
             <div class="console-block">
-                {% autoescape %}
-                {{ console_initial_content|raw }}
-                {% endautoescape %}
+                {% if console_initial_content is defined %}
+                    {% autoescape %}
+                    {{ console_initial_content|raw }}
+                    {% endautoescape %}
+                {% endif %}
             </div>
         </div>
     </div>
