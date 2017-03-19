@@ -24,25 +24,25 @@ discover_sleep:
 
 fight_start:
     path: /fight
-    defaults: { _controller: GameBundle:Battle:startBattle }
+    defaults: { _controller: GameBundle:Fight:start }
     options:
         expose: true
 
 fight_escape:
     path: /fight/escape
-    defaults: { _controller: GameBundle:Battle:escapeBattle }
+    defaults: { _controller: GameBundle:Fight:escape }
     options:
         expose: true
 
 fight_attack:
     path: /fight/attack
-    defaults: { _controller: GameBundle:Battle:attackEnemy }
+    defaults: { _controller: GameBundle:Fight:attackEnemy }
     options:
         expose: true
 
 fight_heal:
     path: /fight/heal
-    defaults: { _controller: GameBundle:Battle:useHealthKit }
+    defaults: { _controller: GameBundle:Fight:useHealthKit }
     options:
         expose: true
 

@@ -87,6 +87,7 @@ class Version20170312212620 extends AbstractMigration
                 `distance` SMALLINT,
                 `enemy_health` SMALLINT,
                 `enemies_left` SMALLINT,
+                `fight_started` SMALLINT,
                 PRIMARY KEY (`id`)
             ) ENGINE InnoDb'
         );

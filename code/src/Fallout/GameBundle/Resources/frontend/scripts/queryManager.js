@@ -13,14 +13,26 @@ var queryManager = {
             resultHandler
         );
     },
-    sleep: function () {
-        queryManager.getClient().make(Routing.generate('discover_sleep'));
+    sleep: function (resultHandler) {
+        queryManager.getClient().make(
+            Routing.generate('discover_sleep'),
+            {},
+           resultHandler
+        );
     },
-    startFight: function () {
-        queryManager.getClient().make(Routing.generate('fight_start'));
+    startFight: function (resultHandler) {
+        queryManager.getClient().make(
+            Routing.generate('fight_start'),
+            {},
+            resultHandler
+        );
     },
-    escape: function() {
-        queryManager.getClient().make(Routing.generate('fight_escape'));
+    escape: function(resultHandler) {
+        queryManager.getClient().make(
+            Routing.generate('fight_escape'),
+            {},
+            resultHandler
+        );
     },
     attack: function () {
 

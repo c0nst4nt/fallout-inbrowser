@@ -2,8 +2,8 @@ require('fos-js-routing');
 require('fos-js-routes');
 var httpClient = require('./httpClient');
 var queryManager = require('./queryManager');
-var eventSetter = require('./eventSetter');
+var mainController = require('./mainController');
 
 queryManager.setClient(httpClient);
-eventSetter.setManager(queryManager);
-eventSetter.createEvents();
+mainController.setManager(queryManager);
+mainController.createActions();

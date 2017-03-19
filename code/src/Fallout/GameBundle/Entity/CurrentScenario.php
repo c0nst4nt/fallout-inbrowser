@@ -55,6 +55,13 @@ class CurrentScenario
     private $enemiesLeft;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="fight_started", type="smallint", nullable=true)
+     */
+    private $fightStarted;
+
+    /**
      * @param integer $scenarioId
      *
      * @return CurrentScenario
@@ -132,5 +139,25 @@ class CurrentScenario
     public function getEnemiesLeft()
     {
         return $this->enemiesLeft;
+    }
+
+    /**
+     * @param bool $fightStarted
+     *
+     * @return CurrentScenario
+     */
+    public function setFightStarted($fightStarted)
+    {
+        $this->fightStarted = $fightStarted;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getFightStarted()
+    {
+        return $this->fightStarted;
     }
 }

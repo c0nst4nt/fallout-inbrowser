@@ -20,3 +20,7 @@ services:
     fallout.scenario.manager:
         class: Fallout\GameBundle\Components\Scenario\ScenarioManager
         arguments: ['@doctrine.orm.default_entity_manager', '@fallout.player.enemy.factory']
+
+    fallout.scenario.fight:
+        class: Fallout\GameBundle\Components\Scenario\FightScenario
+        arguments: ['@fallout.player.ability.manager']

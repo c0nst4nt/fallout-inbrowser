@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DiscoverController extends Controller
 {
-    public function searchAction(Request $request)
+    public function searchAction()
     {
         $scenario = $this->get('fallout.scenario.manager')->generateScenario();
 

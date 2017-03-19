@@ -114,6 +114,17 @@ class ScenarioManager
     }
 
     /**
+     * @return CurrentScenario
+     */
+    public function getCurrentScenario()
+    {
+        $currentScenario = $this->entityManager->getRepository(CurrentScenario::class)->findAll();
+        $currentScenario = array_shift($currentScenario);
+
+        return $currentScenario;
+    }
+
+    /**
      * @param FightScenario $scenario
      * @param EnemyPlayer[] $enemies
      */
@@ -133,6 +144,7 @@ class ScenarioManager
             $enemiesHealth += $enemy->getHealth();
         }
         $currentScenario->setEnemyHealth($enemiesHealth);
+        $currentScenario->setFightStarted(false);
 
         $this->entityManager->persist($currentScenario);
         $this->entityManager->flush();
