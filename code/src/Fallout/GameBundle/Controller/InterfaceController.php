@@ -4,6 +4,7 @@ namespace Fallout\GameBundle\Controller;
 
 use Fallout\GameBundle\Components\Player\Main\MainPlayer;
 use Fallout\GameBundle\Components\Player\Main\Special\SpecialParameterInterface;
+use Fallout\GameBundle\Entity\FightScenario;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,11 +62,26 @@ class InterfaceController extends Controller
         }
 
         $currentScenario = $this->get('fallout.scenario.manager')->getCurrentScenario();
-        if ($currentScenario->getFightStarted()) {
+        if ($currentScenario && $currentScenario->getFightStarted()) {
+            $fightScenario = $this->get('doctrine.orm.default_entity_manager')
+                ->getRepository(FightScenario::class)
+                ->findOneBy(['id' => $currentScenario->getScenarioId()]);
+
+            $fightScenarioComponent = $this->get('fallout.scenario.fight');
+            $fightScenarioComponent->setScenario($fightScenario);
+            $enemies = $fightScenarioComponent->createEnemies($fightScenario);
+
             $playerData = array_merge(
                 $playerData,
                 [
-                    'console_initial_content' => $this->renderView('@Game/fight.screen.html.twig')
+                    'console_initial_content' => $this->renderView(
+                        '@Game/fight.screen.html.twig',
+                        [
+                            'enemies' => $enemies,
+                            'distance' => $currentScenario->getDistance()
+                        ]
+                    ),
+                    'fight' => true,
                 ]
             );
         }

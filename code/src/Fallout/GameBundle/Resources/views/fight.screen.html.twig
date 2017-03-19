@@ -1,1 +1,15 @@
-<strong>{{ "now"|date('d.m.Y, g:i:s') }}: You're currently fighting.</strong>
+{% set dateTime = "now"|date('d.m.Y, g:i:s') %}
+<strong>{{ dateTime }}: You're currently fighting.</strong>
+{% for enemy in enemies %}
+    <p>
+        {{ dateTime }}: There is a {{ enemy.name }} in front of you.
+        This enemy has {{ enemy.health }} HP.
+        {% if enemy.weaponItem is not null %}
+            Enemy has {{ enemy.weaponItem.name }} weapon.
+        {% endif %}
+        {% if enemy.armorItem is not null %}
+            Enemy has {{ enemy.armorItem.name }} armor.
+        {% endif %}
+    </p>
+{% endfor %}
+<p>{{ dateTime }}: Distance to closest enemy is {{ distance }} steps</p>

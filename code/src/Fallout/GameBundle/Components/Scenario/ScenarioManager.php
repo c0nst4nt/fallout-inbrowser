@@ -2,8 +2,8 @@
 namespace Fallout\GameBundle\Components\Scenario;
 
 use Doctrine\ORM\EntityManager;
-use Fallout\GameBundle\Components\Player\Enemy\EnemyFactory;
-use Fallout\GameBundle\Components\Player\Enemy\EnemyPlayer;
+use Fallout\GameBundle\Entity\Player;
+use Fallout\GameBundle\Components\Scenario\FightScenario as FightScenarioComponent;
 use Fallout\GameBundle\Entity\CurrentScenario;
 use Fallout\GameBundle\Entity\DiscoverScenario;
 use Fallout\GameBundle\Entity\FightScenario;
@@ -19,18 +19,20 @@ class ScenarioManager
     private $entityManager;
 
     /**
-     * @var EnemyFactory
+     * @var FightScenarioComponent
      */
-    private $enemyFactory;
+    private $fightScenario;
 
     /**
      * @param EntityManager $entityManager
-     * @param EnemyFactory $enemyFactory
+     * @param FightScenarioComponent $fightScenario
      */
-    public function __construct(EntityManager $entityManager, EnemyFactory $enemyFactory)
-    {
+    public function __construct(
+        EntityManager $entityManager,
+        FightScenarioComponent $fightScenario
+    ) {
         $this->entityManager = $entityManager;
-        $this->enemyFactory = $enemyFactory;
+        $this->fightScenario = $fightScenario;
     }
 
     /**
@@ -53,64 +55,12 @@ class ScenarioManager
         $scenario = $scenarios[$index];
 
         if ($scenario instanceof FightScenario) {
-            $enemies = $this->createEnemies($scenario);
+            $this->fightScenario->setScenario($scenario);
+            $enemies = $this->fightScenario->createEnemies($scenario);
             $this->saveCurrentScenario($scenario, $enemies);
         }
 
         return $scenario;
-    }
-
-    /**
-     * @param FightScenario $scenario
-     * @return EnemyPlayer[]
-     * @throws \Exception
-     */
-    public function createEnemies($scenario)
-    {
-        $enemies = [];
-        $enemiesAmount = $scenario->getEnemiesCount();
-        $enemyMoves = $scenario->getMoves();
-
-        $scenarioMinHealth = $scenario->getMinHealth();
-        $scenarioMaxHealth = $scenario->getMaxHealth();
-        $scenarioMinAttack = $scenario->getMinAttack();
-        $scenarioMaxAttack = $scenario->getMaxAttack();
-
-        for ($i = 0; $i < $enemiesAmount; $i++) {
-            switch (true) {
-                case $enemiesAmount > 2:
-                    if ($i === 0) {
-                        $enemyHealth = $scenarioMinHealth;
-                        $enemyAttack = $scenarioMinAttack;
-                    } else {
-                        $healthQuantificator = ($scenarioMaxHealth - $scenarioMinHealth) / $enemiesAmount;
-                        $attackQuantificator = ($scenarioMaxAttack - $scenarioMinAttack) / $enemiesAmount;
-
-                        $enemyHealth = $healthQuantificator * ($i+1);
-                        $enemyAttack = $attackQuantificator * ($i+1);
-                    }
-                    break;
-                case $enemiesAmount == 2:
-                    if ($i === 0) {
-                        $enemyHealth = $scenarioMinHealth;
-                        $enemyAttack = $scenarioMinAttack;
-                    } else {
-                        $enemyHealth = $scenarioMaxHealth;
-                        $enemyAttack = $scenarioMaxAttack;
-                    }
-                    break;
-                case $enemiesAmount == 1:
-                    $enemyHealth = $scenarioMaxHealth;
-                    $enemyAttack = $scenarioMaxAttack;
-                    break;
-                default:
-                    throw new \Exception('Enemy players count set wrong in fight scenario - '.$enemiesAmount);
-            }
-
-            $enemies[] = $this->enemyFactory->createEnemyPlayer($enemyHealth, $enemyAttack, $enemyMoves);
-        }
-
-        return $enemies;
     }
 
     /**
@@ -126,7 +76,7 @@ class ScenarioManager
 
     /**
      * @param FightScenario $scenario
-     * @param EnemyPlayer[] $enemies
+     * @param Player[] $enemies
      */
     private function saveCurrentScenario($scenario, $enemies)
     {
@@ -140,9 +90,12 @@ class ScenarioManager
         $currentScenario->setEnemiesLeft($scenario->getEnemiesCount());
 
         $enemiesHealth = 0;
+        $distance = 0;
         foreach ($enemies as $enemy) {
+            $distance += $enemy->getMoves();
             $enemiesHealth += $enemy->getHealth();
         }
+        $currentScenario->setDistance($distance);
         $currentScenario->setEnemyHealth($enemiesHealth);
         $currentScenario->setFightStarted(false);
 

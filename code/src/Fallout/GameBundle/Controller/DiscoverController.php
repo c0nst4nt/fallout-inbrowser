@@ -19,9 +19,4 @@ class DiscoverController extends Controller
             ]
         );
     }
-
-    public function sleepAction()
-    {
-
-    }
 }

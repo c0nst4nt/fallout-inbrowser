@@ -6,6 +6,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class FightController extends Controller
 {
+    /**
+     * @return JsonResponse
+     */
     public function startAction()
     {
         $entityManager = $this->get('doctrine.orm.default_entity_manager');

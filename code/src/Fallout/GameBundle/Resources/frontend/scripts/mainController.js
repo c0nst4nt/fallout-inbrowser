@@ -43,14 +43,6 @@ var mainController = {
             );
         });
 
-        $('input[name=sleep]').on('click', function () {
-            mainController.getManager().sleep(
-                function (response) {
-                    console.log(response);
-                }
-            );
-        });
-
         $('input[name=fight]').on('click', function () {
             mainController.getManager().startFight(
                 function (response) {

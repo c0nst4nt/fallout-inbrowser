@@ -16,12 +16,6 @@ discover_search:
     options:
         expose: true
 
-discover_sleep:
-    path: /sleep
-    defaults: { _controller: GameBundle:Discover:sleep }
-    options:
-        expose: true
-
 fight_start:
     path: /fight
     defaults: { _controller: GameBundle:Fight:start }
