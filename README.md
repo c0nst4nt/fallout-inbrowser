@@ -26,7 +26,10 @@ If you chose Docker installation (recommended), then follow this steps (type in 
 
 ```
 cd fallout-cli/environment
-ln -s ~/fallout-cli/code code_link
+ln -s /home/user/fallout-cli/code code_link
+```
+Symlink for project code folder must be absolute, not relative.
+```
 docker-compose build
 docker-compose up -d
 docker-compose exec php-fpm composer install
