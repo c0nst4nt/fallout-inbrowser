@@ -79,15 +79,14 @@ class FightScenario implements ScenarioInterface
 
     /**
      * @param FightScenarioEntity $scenario
+     * @param int $enemiesAmount
      * @return EnemyPlayer[]
      * @throws \Exception
      */
-    public function createEnemies(FightScenarioEntity $scenario)
+    public function createEnemies(FightScenarioEntity $scenario, $enemiesAmount)
     {
         $enemies = [];
-        $enemiesAmount = $scenario->getEnemiesCount();
         $enemyMoves = $scenario->getMoves();
-
         $scenarioMinHealth = $scenario->getMinHealth();
         $scenarioMaxHealth = $scenario->getMaxHealth();
         $scenarioMinAttack = $scenario->getMinAttack();
@@ -124,7 +123,10 @@ class FightScenario implements ScenarioInterface
                     throw new \Exception('Enemy players count set wrong in fight scenario - '.$enemiesAmount);
             }
 
-            $enemies[] = $this->enemyFactory->createEnemyPlayer($enemyHealth, $enemyAttack, $enemyMoves);
+            $enemy = $this->enemyFactory->createEnemyPlayer($enemyHealth, $enemyAttack, $enemyMoves);
+            if ($enemy) {
+                $enemies[] = $enemy;
+            }
         }
 
         return $enemies;

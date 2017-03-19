@@ -41,6 +41,7 @@ class ScenarioManager
     public function generateScenario()
     {
         $entityType = null;
+        // TODO: shorten discover scenario to dummy
         switch (mt_rand(self::FIGHT_SCENARIO, self::DISCOVER_SCENARIO)) {
             case self::FIGHT_SCENARIO:
                 $entityType = FightScenario::class;
@@ -55,8 +56,7 @@ class ScenarioManager
         $scenario = $scenarios[$index];
 
         if ($scenario instanceof FightScenario) {
-            $this->fightScenario->setScenario($scenario);
-            $enemies = $this->fightScenario->createEnemies($scenario);
+            $enemies = $this->fightScenario->createEnemies($scenario, $scenario->getEnemiesCount());
             $this->saveCurrentScenario($scenario, $enemies);
         }
 
@@ -66,7 +66,7 @@ class ScenarioManager
     /**
      * @return CurrentScenario
      */
-    public function getCurrentScenario()
+    public function getScenarioInfo()
     {
         $currentScenario = $this->entityManager->getRepository(CurrentScenario::class)->findAll();
         $currentScenario = array_shift($currentScenario);
@@ -75,10 +75,48 @@ class ScenarioManager
     }
 
     /**
+     * @param bool $transformEnemies
+     * @return array
+     */
+    public function getCurrentScenario($transformEnemies = false)
+    {
+        $scenarioInfo = $this->getScenarioInfo();
+        $fightScenario = $this->entityManager->getRepository(FightScenario::class)
+            ->findOneBy(['id' => $scenarioInfo->getScenarioId()]);
+
+        $this->fightScenario->setScenario($fightScenario);
+        if ($scenarioInfo->getEnemiesLeft()) {
+            $enemiesAmount = $scenarioInfo->getEnemiesLeft();
+        } else {
+            $enemiesAmount = $fightScenario->getEnemiesCount();
+        }
+        $enemies = $this->fightScenario->createEnemies($fightScenario, $enemiesAmount);
+
+        if ($transformEnemies) {
+            $transformedEnemies = [];
+            /** @var Player $enemy */
+            foreach ($enemies as $enemy) {
+                $transformedEnemies[] = [
+                    'health' => $enemy->getHealth(),
+                    'name' => $enemy->getName(),
+                    'armor' => $enemy->getArmorItem()->getName(),
+                    'weapon' => $enemy->getWeaponItem()->getName(),
+                ];
+            }
+            $enemies = $transformedEnemies;
+        }
+
+        return [
+            'enemies' => $enemies,
+            'distance' => $scenarioInfo->getDistance()
+        ];
+    }
+
+    /**
      * @param FightScenario $scenario
      * @param Player[] $enemies
      */
-    private function saveCurrentScenario($scenario, $enemies)
+    public function saveCurrentScenario($scenario, $enemies)
     {
         $currentScenario = $this->entityManager->getRepository(CurrentScenario::class)->findAll();
         $currentScenario = array_shift($currentScenario);
@@ -91,6 +129,7 @@ class ScenarioManager
 
         $enemiesHealth = 0;
         $distance = 0;
+
         foreach ($enemies as $enemy) {
             $distance += $enemy->getMoves();
             $enemiesHealth += $enemy->getHealth();

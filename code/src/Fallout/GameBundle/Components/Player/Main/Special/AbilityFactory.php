@@ -38,4 +38,18 @@ class AbilityFactory
 
         return $abilities;
     }
+
+    /**
+     * @param string $ability
+     * @return SpecialParameterInterface|null
+     */
+    public function getAbility($ability)
+    {
+        $abilities = $this->createAbilities();
+        if (array_key_exists($ability, $abilities)) {
+            return $abilities[$ability];
+        }
+
+        return null;
+    }
 }

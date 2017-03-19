@@ -81,6 +81,38 @@ var mainController = {
                 }
             );
         });
+
+        $('input[name=attack]').on('click', function () {
+            mainController.getManager().attack(
+                function (response) {
+                    console.log(response);
+                }
+            );
+        });
+
+        $('input[name=health]').on('click', function () {
+            mainController.getManager().useHealthKit(
+                function (response) {
+                    console.log(response);
+                }
+            );
+        });
+
+        $('input[name=forward]').on('click', function () {
+            mainController.getManager().moveForward(
+                function (response) {
+                    console.log(response);
+                }
+            );
+        });
+
+        $('input[name=backward]').on('click', function () {
+            mainController.getManager().moveBackward(
+                function (response) {
+                    console.log(response);
+                }
+            );
+        });
     }
 };
 

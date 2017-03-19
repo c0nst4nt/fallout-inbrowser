@@ -7,6 +7,8 @@ use Fallout\GameBundle\Entity\Player;
 
 class EnemyFactory
 {
+    const GUESS_COEFFICIENT = 10;
+
     /**
      * @var EntityManager
      */
@@ -29,11 +31,32 @@ class EnemyFactory
     public function createEnemyPlayer($health, $attack, $moves)
     {
         // TODO: include also enemy attack and moves to query
+        $enemyPlayer = $this->tryGetPlayer($health);
+        if (empty($enemyPlayer)) {
+            $health += self::GUESS_COEFFICIENT;
+            $enemyPlayer = $this->tryGetPlayer($health);
+
+            if (empty($enemyPlayer)) {
+                $health = $health - (self::GUESS_COEFFICIENT * 2);
+                $enemyPlayer = $this->tryGetPlayer($health);
+            }
+        }
+
+        return is_array($enemyPlayer) ? array_shift($enemyPlayer) : $enemyPlayer;
+    }
+
+    /**
+     * @param int $health
+     * @return null|Player
+     */
+    private function tryGetPlayer($health)
+    {
         return $this->entityManager->createQuery(
             'SELECT p FROM GameBundle:Player p 
              WHERE p.health = :health AND p.name <> :playerName'
         )->setParameter('health', $health)
         ->setParameter('playerName', MainPlayer::PLAYER_NAME)
-        ->getOneOrNullResult();
+        ->setMaxResults(1)
+        ->getResult();
     }
 }

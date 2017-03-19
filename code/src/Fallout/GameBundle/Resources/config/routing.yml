@@ -40,6 +40,12 @@ fight_heal:
     options:
         expose: true
 
+fight_move:
+    path: /fight/move/{type}
+    defaults: { _controller: GameBundle:Fight:move }
+    options:
+        expose: true
+
 player_distribute_score:
     path: /player/distribute
     defaults: { _controller: GameBundle:Player:distributeSpecialScore }

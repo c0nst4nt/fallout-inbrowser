@@ -61,25 +61,15 @@ class InterfaceController extends Controller
             );
         }
 
-        $currentScenario = $this->get('fallout.scenario.manager')->getCurrentScenario();
-        if ($currentScenario && $currentScenario->getFightStarted()) {
-            $fightScenario = $this->get('doctrine.orm.default_entity_manager')
-                ->getRepository(FightScenario::class)
-                ->findOneBy(['id' => $currentScenario->getScenarioId()]);
-
-            $fightScenarioComponent = $this->get('fallout.scenario.fight');
-            $fightScenarioComponent->setScenario($fightScenario);
-            $enemies = $fightScenarioComponent->createEnemies($fightScenario);
-
+        $scenarioInfo = $this->get('fallout.scenario.manager')->getScenarioInfo();
+        if ($scenarioInfo && $scenarioInfo->getFightStarted()) {
+            $fightScenarioData = $this->get('fallout.scenario.manager')->getCurrentScenario();
             $playerData = array_merge(
                 $playerData,
                 [
                     'console_initial_content' => $this->renderView(
                         '@Game/fight.screen.html.twig',
-                        [
-                            'enemies' => $enemies,
-                            'distance' => $currentScenario->getDistance()
-                        ]
+                        $fightScenarioData
                     ),
                     'fight' => true,
                 ]
@@ -90,8 +80,8 @@ class InterfaceController extends Controller
     }
 
     /**
-     * @param $limit
-     * @param $value
+     * @param int $limit
+     * @param int $value
      * @return float
      */
     private function calculateBarValue($limit, $value)

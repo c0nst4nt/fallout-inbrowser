@@ -6,48 +6,68 @@ var queryManager = {
     getClient: function () {
         return this.client;
     },
-    discover: function (resultHandler) {
+    createQuery: function (route, parameters, handler) {
         queryManager.getClient().make(
+            route,
+            parameters,
+            handler
+        );
+    },
+    discover: function (resultHandler) {
+        queryManager.createQuery(
             Routing.generate('discover_search'),
             {},
             resultHandler
         );
     },
-    sleep: function (resultHandler) {
-        queryManager.getClient().make(
-            Routing.generate('discover_sleep'),
-            {},
-           resultHandler
-        );
-    },
     startFight: function (resultHandler) {
-        queryManager.getClient().make(
+        queryManager.createQuery(
             Routing.generate('fight_start'),
             {},
             resultHandler
         );
     },
     escape: function(resultHandler) {
-        queryManager.getClient().make(
+        queryManager.createQuery(
             Routing.generate('fight_escape'),
             {},
             resultHandler
         );
     },
-    attack: function () {
-
+    attack: function (resultHandler) {
+        queryManager.createQuery(
+            Routing.generate('fight_attack'),
+            {},
+            resultHandler
+        );
     },
-    moveForward: function () {
-
+    moveForward: function (resultHandler) {
+        queryManager.createQuery(
+            Routing.generate('fight_move', {type: 'forward'}),
+            {},
+            resultHandler
+        );
     },
-    moveBackward: function () {
-
+    moveBackward: function (resultHandler) {
+        queryManager.createQuery(
+            Routing.generate('fight_move', {type: 'backward'}),
+            {},
+            resultHandler
+        );
     },
-    useHealthKit: function () {
-
+    useHealthKit: function (resultHandler) {
+        queryManager.createQuery(
+            Routing.generate('fight_heal'),
+            {},
+            resultHandler
+        );
     },
-    changeScore: function (score) {
-
+    changeScore: function (scores, resultHandler) {
+        queryManager.createQuery(
+            Routing.generate('player_distribute_score'),
+            scores,
+            resultHandler
+        );
     }
 };
 

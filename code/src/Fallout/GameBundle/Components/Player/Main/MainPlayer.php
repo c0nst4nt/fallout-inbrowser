@@ -3,11 +3,13 @@ namespace Fallout\GameBundle\Components\Player\Main;
 
 use Doctrine\ORM\EntityManager;
 use Fallout\GameBundle\Components\Player\Main\Special\SpecialParameterInterface;
-use Fallout\GameBundle\Components\Player\PlayerAbstract;
+use Fallout\GameBundle\Components\Player\PlayerInterface;
+use Fallout\GameBundle\Entity\Item\ArmorItem;
+use Fallout\GameBundle\Entity\Item\WeaponItem;
 use Fallout\GameBundle\Entity\PlayerAbilities;
 use Fallout\GameBundle\Entity\Player;
 
-class MainPlayer extends PlayerAbstract
+class MainPlayer implements PlayerInterface
 {
     const PLAYER_NAME = 'main';
     const BASE_HEALTH = 30;
@@ -122,5 +124,21 @@ class MainPlayer extends PlayerAbstract
                 ->findOneBy(['name' => self::PLAYER_NAME]);
             $this->playerInstance = $playerInstance ?: null;
         }
+    }
+
+    /**
+     * @return WeaponItem
+     */
+    public function getWeapon()
+    {
+        return $this->playerInstance->getWeaponItem();
+    }
+
+    /**
+     * @return ArmorItem
+     */
+    public function getArmor()
+    {
+        return $this->playerInstance->getArmorItem();
     }
 }
