@@ -34,7 +34,7 @@ docker-compose exec php-fpm bin/console doctrine:migrations:migrate
 docker-compose exec php-fpm bin/console doctrine:fixtures:load
 docker-compose exec php-fpm bin/console assets:install --symlink web
 docker-compose exec php-fpm bin/console fos:js-routing:dump
-docker-compose run --rm node-js ./node_modules/.bin/webpack
+docker-compose exec php-fpm bin/console cache:clear --env=prod
 ``` 
 
 Then you can try to open browser and type
