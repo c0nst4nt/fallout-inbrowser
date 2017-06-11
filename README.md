@@ -26,9 +26,9 @@ If you chose Docker installation (recommended), then follow this steps (type in 
 
 ```
 cd fallout-cli/environment
-ln -s /home/user/fallout-cli/code code_link
+ln -s ../code code_link
 ```
-Symlink for project code folder must be absolute, not relative.
+After creating symbolic link, make build and run containers.
 ```
 docker-compose build
 docker-compose up -d
