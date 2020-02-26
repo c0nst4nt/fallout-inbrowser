@@ -57,5 +57,4 @@ bin/console doctrine:migrations:migrate
 And so on.
 
 Eventually, if you open your browser, you must see this:
-![Hud example]
-(https://raw.githubusercontent.com/sw4n/fallout/master/hud_example.png)
+![Hud example](https://raw.githubusercontent.com/sw4n/fallout/master/hud_example.png)
