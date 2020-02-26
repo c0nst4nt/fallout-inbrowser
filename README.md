@@ -46,7 +46,8 @@ docker-compose exec php-fpm bin/console cache:clear --env=prod
 
 Then you can try to open browser and type
 "http://localhost/".
-Then you must see menu page with single link. This means that everything is working.
+Then you must see menu page with single link. This means that everything is working. Eventually, you must see this:
+![Hud example](https://raw.githubusercontent.com/sw4n/fallout/master/hud_example.png)
 
 If you didn't choose the Docker installation, you need install separately "Nginx", "PHP 5.6" and "MySql 5.7", composer, node js. 
 Then follow commands without referencing to the containers. E.g.
@@ -55,6 +56,3 @@ composer install
 bin/console doctrine:migrations:migrate
 ```
 And so on.
-
-Eventually, if you open your browser, you must see this:
-![Hud example](https://raw.githubusercontent.com/sw4n/fallout/master/hud_example.png)
