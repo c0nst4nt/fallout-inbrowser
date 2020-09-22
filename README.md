@@ -1,4 +1,4 @@
-Fallout game
+Fallout in-browser game
 ========================
 
 Welcome to the post apocalyptic spin-off game, based on Fallout series!
