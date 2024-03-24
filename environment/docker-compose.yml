@@ -14,17 +14,6 @@ services:
             - ./data/mysql:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: root
-    nginx:
-        build: ./nginx
-        container_name: fallout_cli_nginx
-        ports:
-            - 80:80
-        links:
-            - php-fpm
-        volumes_from:
-            - code
-        volumes:
-            - ./logs/nginx:/var/log/nginx
     php-fpm:
         build: ./php-fpm
         container_name: fallout_cli_php-fpm
@@ -36,6 +25,17 @@ services:
             - ./logs/fallout_cli:/var/log/fallout_cli
         links:
             - db
+    nginx:
+        build: ./nginx
+        container_name: fallout_cli_nginx
+        ports:
+            - 81:80
+        links:
+            - php-fpm
+        volumes_from:
+            - code
+        volumes:
+            - ./logs/nginx:/var/log/nginx
     node-js:
         build: ./node
         container_name: fallout_cli_node-js
